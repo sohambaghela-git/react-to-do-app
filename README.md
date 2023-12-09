@@ -1,6 +1,15 @@
+Make sure you have Node.js and npm installed on your machine.
+
+- Node.js: [Download](https://nodejs.org/)
+- npm: (Included with Node.js)
+
+### Installation
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 
 ## Available Scripts
 
