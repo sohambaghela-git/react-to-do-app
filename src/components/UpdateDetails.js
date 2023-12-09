@@ -93,7 +93,7 @@ const UpdateDetails = (props) => {
                     onChange={handleInputChange}
                     />
                 </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary">Update</button>
             </form>
         </div>
     );
