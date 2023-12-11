@@ -2,6 +2,8 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import '../App.css';
 import { Link } from 'react-router-dom';
+import ShowImage from '../images/eye-icon.png';
+import UpdateImage from '../images/update-icon.png';
 
 const Home = (props) => {
   const { tableData, setTableData } = props;
@@ -31,13 +33,15 @@ const Home = (props) => {
           <tbody>
             {tableData.map(item => (
               <tr key={item.id}>
-                <td className="w-5">{item.id}</td>
-                <td className="w-20">{item.name}</td>
-                <td className="w-55">{item.description}</td>
-                <td className="w-25">{item.date}</td>
-                <td className="w-15"><Link className='btn btn-primary' to={`/detail/${item.id}`}>Show</Link></td>
-                <td className="w-15"><Link className='btn btn-success' to={`/updateDetails/${item.id}`}>Update</Link></td>
-                <td className="w-15"><button className='btn btn-danger' onClick={() => handleDelete(item.id)}>Delete</button></td>
+                <td className="w-6">{item.id}</td>
+                <td className="w-24">{item.name}</td>
+                <td className="w-34">{item.description}</td>
+                <td className="w-24">{item.date}</td>
+                <td className="w-24">
+                  <Link to={`/detail/${item.id}`}><img src={ShowImage} alt="Logo" className="logo" /></Link>
+                  <Link to={`/updateDetails/${item.id}`}><img src={UpdateImage} alt="Logo" className="logo" /></Link>
+                  <button onClick={() => handleDelete(item.id)}>&empty;</button>
+                </td>
               </tr>
             ))}
           </tbody>
