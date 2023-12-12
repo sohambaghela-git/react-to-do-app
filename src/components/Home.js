@@ -6,13 +6,8 @@ import ShowImage from '../images/eye-icon.png';
 import UpdateImage from '../images/update-icon.png';
 
 const Home = (props) => {
-  const { tableData, setTableData } = props;
-  const handleDelete = (id) => {
-    //check tableData - id exits - delte ...settableData
-    console.log(id);
-    setTableData(tableData.filter(data => data.id !== id));
-  }
-
+  const { tableData, setTableData, handleDelete } = props;
+ 
   return (
     <div className="container mt-4">
       <div className='row'>

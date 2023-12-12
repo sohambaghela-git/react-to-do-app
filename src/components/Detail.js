@@ -4,7 +4,7 @@ import React from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 
 const Detail = (props) => {
-  const { tableData, setTableData } = props;
+  const { tableData, setTableData, handleDelete } = props;
   const { id } = useParams();
   const navigate = useNavigate();
   let foundItem = null;
@@ -17,12 +17,6 @@ const Detail = (props) => {
 
   if (!foundItem) {
     return <div className="text-center mt-3"><b>Item not found!</b></div>;
-  }
-
-  const handleDelete = (id) => {
-    setTableData(tableData.filter(data => data.id !== id));
-    // This is method which redirect on given path
-    navigate('/');
   }
 
   return (
