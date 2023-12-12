@@ -15,7 +15,7 @@ const FormDetails = (props) => {
   }
   // State to hold form data
   const [formData, setFormData] = useState(initialValue);
-
+  const [errors, setErrors] = useState({});
   // Handle form input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -28,9 +28,29 @@ const FormDetails = (props) => {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+    const validationErrors = {};
+    const currentDate = new Date().toISOString().split('T')[0];
+    if (!formData.name.trim()) {
+      validationErrors.name = 'Name is required';
+    }
+    if (!formData.description.trim()) {
+      validationErrors.description = 'Description is required';
+    }
+    if (!formData.date.trim()) {
+      validationErrors.date = 'Date is required';
+    }else if (formData.date < currentDate) {
+      validationErrors.date = 'Date can not be past';
+    }
+
+    if (Object.keys(validationErrors).length > 0) {
+      // To update the error state and return funtion from here
+      setErrors(validationErrors);
+      return;
+    }
     // setTableData(formData);
     setTableData((prevTableData) => [...prevTableData, formData]);
-    setFormData(initialValue)
+    setFormData(initialValue);
+    setErrors({});
     // console.log('Form submitted with data:', formData);
   };
 
@@ -60,6 +80,7 @@ const FormDetails = (props) => {
             value={formData.name}
             onChange={handleInputChange}
           />
+           {errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
         </div>
         <div className="mb-3">
           <label htmlFor="description" className="form-label">Description:</label>
@@ -70,6 +91,7 @@ const FormDetails = (props) => {
             value={formData.description}
             onChange={handleInputChange}
           ></textarea>
+           {errors.description && <div style={{ color: 'red' }}>{errors.description}</div>}
         </div>
         <div className="mb-3">
           <label htmlFor="date" className="form-label">Date:</label>
@@ -81,6 +103,7 @@ const FormDetails = (props) => {
             value={formData.date}
             onChange={handleInputChange}
           />
+           {errors.date && <div style={{ color: 'red' }}>{errors.date}</div>}
         </div>
         <button type="submit" className="btn btn-primary">Submit</button>
       </form>
