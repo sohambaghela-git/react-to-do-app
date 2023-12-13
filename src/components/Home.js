@@ -2,11 +2,12 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import '../App.css';
 import { Link } from 'react-router-dom';
-import ShowImage from '../images/eye-icon.png';
-import UpdateImage from '../images/update-icon.png';
+import ShowImage from '../images/eye.svg';
+import UpdateImage from '../images/pencil.svg';
+import DeleteImage from '../images/trash.svg';
 
 const Home = (props) => {
-  const { tableData, setTableData, handleDelete } = props;
+  const { tableData, handleDelete } = props;
  
   return (
     <div className="container mt-4">
@@ -30,12 +31,12 @@ const Home = (props) => {
               <tr key={item.id}>
                 <td className="w-6">{item.id}</td>
                 <td className="w-24">{item.name}</td>
-                <td className="w-34">{item.description}</td>
+                <td>{item.description.length > 50 ? `${item.description.slice(0, 50)}...` : item.description}</td>
                 <td className="w-24">{item.date}</td>
-                <td className="w-24">
+                <td className="w-24 d-flex justify-content-between align-items-center">
                   <Link to={`/detail/${item.id}`}><img src={ShowImage} alt="Logo" className="logo" /></Link>
                   <Link to={`/updateDetails/${item.id}`}><img src={UpdateImage} alt="Logo" className="logo" /></Link>
-                  <button onClick={() => handleDelete(item.id)}>&empty;</button>
+                  <button onClick={() => handleDelete(item.id)}><img src={DeleteImage} alt="Logo" className="logo" /></button>
                 </td>
               </tr>
             ))}

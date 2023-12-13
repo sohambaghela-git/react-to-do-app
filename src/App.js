@@ -12,9 +12,12 @@ function App() {
   const [tableData, setTableData] = useState([]);
   const navigate = useNavigate();
   const handleDelete = (id) => {
-    //check tableData - id exits - delte ...settableData
-    setTableData(tableData.filter(data => data.id !== id));
-    navigate('/');
+    const confirmed = window.confirm('Are you sure you want to delete?');
+    if (confirmed) {
+      // If the user confirms, proceed with the deletion
+      setTableData(tableData.filter(data => data.id !== id));
+      navigate('/');
+    }
   }
 
   return (
